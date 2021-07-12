@@ -15,6 +15,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HttpsIcon from '@material-ui/icons/Https';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
+import UserProfile from "./UserProfile";
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -97,7 +98,15 @@ function UserMenu() {
 
         {/* <MenuItem onClick={swithMode}>{`${layoutReducer.darkMode ? "Light" : "Dark"
           } mode`}</MenuItem>
-        <Divider light /> */}
+        */}
+
+        {/* start  User Profile*/}
+        <MenuItem>
+          <UserProfile></UserProfile>
+        </MenuItem>
+        {/* end User Profile */}
+
+        <Divider light />
 
         {/* start Change Password */}
         <MenuItem onClick={changePasswordClick}>
