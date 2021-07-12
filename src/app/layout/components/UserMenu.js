@@ -14,6 +14,8 @@ import Link from '@material-ui/core/Link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HttpsIcon from '@material-ui/icons/Https';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -21,6 +23,17 @@ function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const layoutReducer = useSelector(({ layout }) => layout)
+  const [mode, setMode] = React.useState(true);
+
+  const handleClick = () => {
+    if (mode) {
+      setMode(false);
+      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
+    } else {
+      setMode(true);
+      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
+    }
+  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -58,6 +71,11 @@ function UserMenu() {
 
   return (
     <div>
+      <IconButton onClick={() => {
+        handleClick();
+      }}>
+        {mode === true ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"
@@ -65,7 +83,7 @@ function UserMenu() {
         onClick={handleMenu}
         color="inherit"
       >
-        <Typography variant="caption">{authReducer.user}</Typography>
+        <Typography variant="caption" style={{ marginBottom: 10 }}>{authReducer.user}</Typography>
       </IconButton>
       <Menu
         id="menu-appbar"
@@ -83,15 +101,15 @@ function UserMenu() {
         onClose={handleClose}
       >
 
-        <MenuItem onClick={swithMode}>{`${layoutReducer.darkMode ? "Light" : "Dark"
+        {/* <MenuItem onClick={swithMode}>{`${layoutReducer.darkMode ? "Light" : "Dark"
           } mode`}</MenuItem>
-        <Divider light />
+        <Divider light /> */}
+
+        {/* start Change Password */}
         <MenuItem onClick={changePasswordClick}>
           <Chip
             size="small"
             icon={<HttpsIcon style={{ fontSize: 20, marginLeft: 10 }} />}
-          // onDelete={handleDelete}
-          // color="primary"
           />
           <Link
             style={{ color: "#000000", marginLeft: 20, marginBottom: 10 }}
@@ -105,6 +123,9 @@ function UserMenu() {
             <ChevronRightIcon style={{ marginLeft: 200 }}></ChevronRightIcon>
           </Link>
         </MenuItem>
+        {/* end Change Password */}
+
+        {/* start Sign out*/}
         <MenuItem onClick={logoutClick}>
           <Chip
             size="small"
@@ -125,6 +146,7 @@ function UserMenu() {
             Sign out
           </Link>
         </MenuItem>
+        {/* end Sign out */}
       </Menu>
     </div>
   );
