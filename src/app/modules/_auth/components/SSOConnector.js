@@ -1,9 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Typography } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import * as CONST from "../../../../Constant";
 import * as authRedux from "../_redux/authRedux";
 import * as authCRUD from "../_redux/authCrud";
-import { useDispatch } from "react-redux";
-import * as CONST from "../../../../Constant";
+import { Container } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 function SSOConnector(props) {
   const dispatch = useDispatch();
@@ -61,7 +65,27 @@ function SSOConnector(props) {
   return (
     <React.Fragment>
       <div>{isSSOLoaded && props.children}</div>
-
+      <div>
+        {!isSSOLoaded && (
+          <React.Fragment>
+            <Container style={{height:500}}>
+              <Grid
+                container
+                style={{height:500}}
+                spacing={3}
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item><CircularProgress /></Grid>
+                <Grid item>
+                  <Typography>Connecting to SSO Auth Service</Typography>
+                </Grid>
+              </Grid>
+            </Container>
+          </React.Fragment>
+        )}
+      </div>
       <iframe
         width="0"
         height="0"
