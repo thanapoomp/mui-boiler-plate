@@ -69,7 +69,7 @@ function UserMenu() {
       <IconButton onClick={() => {
         swithMode();
       }}>
-        {mode === true ? <NightsStayIcon style={{ color: "#f27e2c", fontSize: 20 }} /> : <WbSunnyIcon style={{ fontSize: 20 }} />}
+        {mode === true ? <NightsStayIcon style={{ fontSize: 20 }} /> : <WbSunnyIcon style={{ fontSize: 20, color: "#f27e2c" }} />}
       </IconButton>
       <IconButton
         aria-label="account of current user"
