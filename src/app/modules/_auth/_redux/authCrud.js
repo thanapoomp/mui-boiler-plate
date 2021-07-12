@@ -11,8 +11,8 @@ export const RENEW_TOKEN_URL = `${CONST.API_URL}/Auth/renew`
 
 export const ME_URL = `${CONST.API_URL}/Auth/renew`;
 
-export function login(username, password) {
-  return axios.post(LOGIN_URL, { username, password });
+export function login(username, password, source) {
+  return axios.post(LOGIN_URL, { username, password, source });
 }
 
 export function register(email, fullname, username, password) {

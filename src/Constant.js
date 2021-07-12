@@ -13,13 +13,21 @@ export const API_URL =
 
 export const SSO_URL =
   !process.env.NODE_ENV || process.env.NODE_ENV === "development"
-     ? "https://auth.thanapoom.cc" //dev
+    // ? "https://auth.thanapoom.cc" //dev
+    ? "http://localhost:3000" //dev
     : "https://auth.thanapoom.cc"; // Production
 
 export const SSO_URL_LOGOUT =
   !process.env.NODE_ENV || process.env.NODE_ENV === "development"
-     ? "https://auth.thanapoom.cc/#/logout" //dev
+    // ? "https://auth.thanapoom.cc/#/logout" //dev
+    ? "http://localhost:3000/#/logout" //dev
     : "https://auth.thanapoom.cc/#/logout"; // Production
+
+export const SSO_URL_Changepassword =
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+    // ? "https://auth.thanapoom.cc/#/logout" //dev
+    ? "http://localhost:3000/#/changepassword" //dev
+    : "http://localhost:3000/#/changepassword"; // Production
 
 export const ROLES = {
   user: "User",
