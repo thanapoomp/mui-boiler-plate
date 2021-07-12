@@ -3,8 +3,7 @@ import {
   Typography,
   IconButton,
   MenuItem,
-  Menu,
-  Divider
+  Menu
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as layoutRedux from "../_redux/layoutRedux";
@@ -127,7 +126,7 @@ function UserMenu() {
             style={{ marginTop: 10 }}
             icon={<ExitToAppIcon style={{ fontSize: 20, marginLeft: 11 }} />}
             // onDelete={handleDelete}
-            color="#474c52"
+            color="default"
           />
           <Link
             style={{ color: "#000000", marginLeft: 20, marginTop: 10 }}//#f7f5f5
@@ -137,7 +136,6 @@ function UserMenu() {
               logoutClick();
             }}
           >
-
             Sign out
           </Link>
         </MenuItem>
