@@ -14,8 +14,8 @@ import Link from '@material-ui/core/Link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HttpsIcon from '@material-ui/icons/Https';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -24,16 +24,6 @@ function UserMenu() {
   const open = Boolean(anchorEl);
   const layoutReducer = useSelector(({ layout }) => layout)
   const [mode, setMode] = React.useState(true);
-
-  const handleClick = () => {
-    if (mode) {
-      setMode(false);
-      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
-    } else {
-      setMode(true);
-      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
-    }
-  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -45,8 +35,13 @@ function UserMenu() {
 
   const swithMode = () => {
     //todo switch mode
-    dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
-    setAnchorEl(null);
+    if (mode) {
+      setMode(false);
+      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
+    } else {
+      setMode(true);
+      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
+    }
   }
 
   const changePasswordClick = () => {
@@ -72,9 +67,9 @@ function UserMenu() {
   return (
     <div>
       <IconButton onClick={() => {
-        handleClick();
+        swithMode();
       }}>
-        {mode === true ? <Brightness7Icon /> : <Brightness4Icon />}
+        {mode === true ? <WbSunnyIcon style={{ color: "#f27e2c" }} /> : <NightsStayIcon />}
       </IconButton>
       <IconButton
         aria-label="account of current user"
