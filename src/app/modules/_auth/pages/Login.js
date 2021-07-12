@@ -56,7 +56,7 @@ function Login(props) {
               size="large"
               variant="contained"
               color="primary"
-              endIcon={<LockOpenIcon>send</LockOpenIcon>}
+              endIcon={<LockOpenIcon />}
               disableElevation
               onClick={() => {
                 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=300,height=450,left=200,top=200`;
