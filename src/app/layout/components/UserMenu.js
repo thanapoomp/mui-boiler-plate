@@ -25,16 +25,6 @@ function UserMenu() {
   const layoutReducer = useSelector(({ layout }) => layout)
   const [mode, setMode] = React.useState(true);
 
-  const handleClick = () => {
-    if (mode) {
-      setMode(false);
-      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
-    } else {
-      setMode(true);
-      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
-    }
-  };
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -45,8 +35,13 @@ function UserMenu() {
 
   const swithMode = () => {
     //todo switch mode
-    dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
-    setAnchorEl(null);
+    if (mode) {
+      setMode(false);
+      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
+    } else {
+      setMode(true);
+      dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
+    }
   }
 
   const changePasswordClick = () => {
@@ -72,7 +67,7 @@ function UserMenu() {
   return (
     <div>
       <IconButton onClick={() => {
-        handleClick();
+        swithMode();
       }}>
         {mode === true ? <WbSunnyIcon style={{ color: "#f27e2c" }} /> : <NightsStayIcon />}
       </IconButton>
