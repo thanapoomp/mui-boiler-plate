@@ -9,6 +9,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import * as layoutRedux from "../_redux/layoutRedux";
 import * as CONST from '../../../Constant'
+import Chip from '@material-ui/core/Chip';
+import Link from '@material-ui/core/Link';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import HttpsIcon from '@material-ui/icons/Https';
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -77,11 +82,49 @@ function UserMenu() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={changePasswordClick}>เปลี่ยนรหัสผ่าน</MenuItem>
+
         <MenuItem onClick={swithMode}>{`${layoutReducer.darkMode ? "Light" : "Dark"
           } mode`}</MenuItem>
         <Divider light />
-        <MenuItem onClick={logoutClick}>ออกจากระบบ</MenuItem>
+        <MenuItem onClick={changePasswordClick}>
+          <Chip
+            size="small"
+            icon={<HttpsIcon style={{ fontSize: 20, marginLeft: 10 }} />}
+          // onDelete={handleDelete}
+          // color="primary"
+          />
+          <Link
+            style={{ color: "#000000", marginLeft: 20, marginBottom: 10 }}
+            component="button"
+            variant="inherit"
+            onClick={() => {
+              changePasswordClick();
+            }}
+          >
+            Change Password
+            <ChevronRightIcon style={{ marginLeft: 200 }}></ChevronRightIcon>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={logoutClick}>
+          <Chip
+            size="small"
+            style={{ marginTop: 10 }}
+            icon={<ExitToAppIcon style={{ fontSize: 20, marginLeft: 11 }} />}
+            // onDelete={handleDelete}
+            color="#474c52"
+          />
+          <Link
+            style={{ color: "#000000", marginLeft: 20, marginTop: 10 }}//#f7f5f5
+            component="button"
+            variant="inherit"
+            onClick={() => {
+              logoutClick();
+            }}
+          >
+
+            Sign out
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
   );
