@@ -14,8 +14,8 @@ import Link from '@material-ui/core/Link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HttpsIcon from '@material-ui/icons/Https';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import Brightness7Icon from '@material-ui/icons/Brightness7';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -74,7 +74,7 @@ function UserMenu() {
       <IconButton onClick={() => {
         handleClick();
       }}>
-        {mode === true ? <Brightness7Icon /> : <Brightness4Icon />}
+        {mode === true ? <WbSunnyIcon style={{ color: "#f27e2c" }} /> : <NightsStayIcon />}
       </IconButton>
       <IconButton
         aria-label="account of current user"
