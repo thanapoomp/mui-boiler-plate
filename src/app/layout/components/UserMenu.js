@@ -16,6 +16,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HttpsIcon from '@material-ui/icons/Https';
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
+import { Grid } from "@material-ui/core";
+import UserProfile from "./UserProfile";
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -99,7 +101,9 @@ function UserMenu() {
         {/* <MenuItem onClick={swithMode}>{`${layoutReducer.darkMode ? "Light" : "Dark"
           } mode`}</MenuItem>
         <Divider light /> */}
-
+        <MenuItem>
+          <UserProfile></UserProfile>
+        </MenuItem>
         {/* start Change Password */}
         <MenuItem onClick={changePasswordClick}>
           <Chip
