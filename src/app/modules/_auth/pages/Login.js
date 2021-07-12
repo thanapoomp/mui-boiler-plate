@@ -44,14 +44,14 @@ function Login(props) {
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item xs={12} lg={12} >
+          <Grid item xs={12} lg={12} style={{ marginLeft: 209 }}>
             <img
               className={classes.logo}
               alt=""
               src={process.env.PUBLIC_URL + "/logo192.png"}
             />
           </Grid>
-          <Grid item xs={12} lg={12}>
+          <Grid item xs={12} lg={12} style={{ marginLeft: 206 }}>
             <Button
               size="large"
               variant="contained"
