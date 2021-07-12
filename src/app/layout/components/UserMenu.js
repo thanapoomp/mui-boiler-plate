@@ -23,7 +23,7 @@ function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const layoutReducer = useSelector(({ layout }) => layout)
-  const [mode, setMode] = React.useState(true);
+  const [mode, setMode] = React.useState(false);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -69,7 +69,7 @@ function UserMenu() {
       <IconButton onClick={() => {
         swithMode();
       }}>
-        {mode === true ? <WbSunnyIcon style={{ color: "#f27e2c" }} /> : <NightsStayIcon />}
+        {mode === true ? <NightsStayIcon style={{ color: "#f27e2c", fontSize: 20 }} /> : <WbSunnyIcon style={{ fontSize: 20 }} />}
       </IconButton>
       <IconButton
         aria-label="account of current user"
@@ -78,7 +78,7 @@ function UserMenu() {
         onClick={handleMenu}
         color="inherit"
       >
-        <Typography variant="caption" style={{ marginBottom: 10 }}>{authReducer.user}</Typography>
+        <Typography variant="caption">{authReducer.user}</Typography>
       </IconButton>
       <Menu
         id="menu-appbar"
