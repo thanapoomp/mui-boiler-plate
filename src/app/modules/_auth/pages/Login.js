@@ -16,14 +16,14 @@ function Login(props) {
     },
     bg: {
       width: 700,
-      height: 650,
+      height: 500,
     },
   }));
   const classes = useStyle();
 
   return (
     <Grid container item xs={12} lg={12} >
-      <Grid item xs={6} lg={6}>
+      <Grid item xs={12} lg={6}>
         <Grid
           container
           direction="row"
@@ -33,25 +33,25 @@ function Login(props) {
           <img
             className={classes.bg}
             alt=""
-            src={process.env.PUBLIC_URL + "/media/bg.jpg"}
+            src={process.env.PUBLIC_URL + "/media/bg2.png"}
           />
         </Grid>
       </Grid>
-      <Grid item xs={6} lg={6} style={{ marginTop: 150 }}>
+      <Grid item xs={12} lg={6} style={{ marginTop: 150 }}>
         <Grid
           container
           direction="column"
           justifyContent="center"
           alignItems="center"
         >
-          <Grid item xs={12} lg={12} style={{ marginLeft: 209 }}>
+          <Grid item xs={12} lg={12} >
             <img
               className={classes.logo}
               alt=""
               src={process.env.PUBLIC_URL + "/logo192.png"}
             />
           </Grid>
-          <Grid item xs={12} lg={12} style={{ marginLeft: 206 }}>
+          <Grid item xs={12} lg={12} >
             <Button
               size="large"
               variant="contained"
