@@ -6,7 +6,6 @@ import { Grid } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 
-
 function UserProfile() {
 	const useStyle = makeStyles((theme) => ({
 		image: {
