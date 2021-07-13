@@ -6,6 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikCheckBoxGroup from "../../../_common/components/CustomFormik/FormikCheckBoxGroup";
 import FormikRouterPrompt from "../../../_common/components/CustomFormik/FormikRouterPrompt";
+import * as swal from '../../../_common/components/SweetAlert'
 
 function FormWithCheckboxGroup() {
   const history = useHistory();
@@ -33,9 +34,10 @@ function FormWithCheckboxGroup() {
       selectedHobbies: state.selectedHobbies,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

@@ -6,7 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikTimePIcker from "../../../_common/components/CustomFormik/FormikTimePicker";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
-
+import * as swal from '../../../_common/components/SweetAlert'
 // import set นี้ เมื่อใช้ datepicker ทุกครั้ง
 // datepicker ในฝั่ง front จะอยู่ใน UTC FormattedDate ต้องแปลงเป็น Local ก่อนยิง API
 require("dayjs/locale/th");
@@ -41,9 +41,10 @@ function FormWithTimePicker() {
       //แปลงกลับให้เป็น Local DateTime
       let appointmentTime = dayjs(values.appointmentDate).local().format();
       values = {...values,appointmentDate: appointmentTime}
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res)=>{
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

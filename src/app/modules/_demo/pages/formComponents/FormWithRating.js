@@ -6,7 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikRating from "../../../_common/components/CustomFormik/FormikRating";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
-
+import *  as swal from '../../../_common/components/SweetAlert'
 function FormWithRating() {
   const history = useHistory();
 
@@ -25,9 +25,10 @@ function FormWithRating() {
       rating: 0,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

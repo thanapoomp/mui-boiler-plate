@@ -6,6 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikUploader from "../../../_common/components/CustomFormik/FormikUploader";
 import * as demoAxios from "../../_redux/demoAxios";
+import *  as swal from '../../../_common/components/SweetAlert'
 
 function FormWithUploader() {
   const history = useHistory();
@@ -31,11 +32,12 @@ function FormWithUploader() {
       demoAxios
         .postFile(values.imageFile)
         .then((res) => {
-          alert(JSON.stringify(res.data, null, 2));
-          formik.setSubmitting(false);
+          swal.swalInfo('info',JSON.stringify(res.data, null, 2)).then((res) => {
+            formik.setSubmitting(false);
+          });
         })
         .catch((err) => {
-          alert(JSON.stringify(err.message, null, 2));
+          swal.swalError('error',JSON.stringify(err.message, null, 2));
         })
         .finally(() => {
           formik.setSubmitting(false);
@@ -96,7 +98,7 @@ function FormWithUploader() {
       <br></br>
       error: {JSON.stringify(formik.errors)}
       <br></br>
-      touched: {JSON.stringify(formik.touched)}      
+      touched: {JSON.stringify(formik.touched)}
     </form>
   );
 }

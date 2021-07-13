@@ -6,6 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikSwitch from "../../../_common/components/CustomFormik/FormikSwitch";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
+import * as swal from '../../../_common/components/SweetAlert'
 
 function FormWithSwitch() {
   const history = useHistory();
@@ -21,9 +22,10 @@ function FormWithSwitch() {
       isActive: false,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

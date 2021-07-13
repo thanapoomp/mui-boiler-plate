@@ -6,6 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikRadioGroup from "../../../_common/components/CustomFormik/FormikRadioGroup";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
+import * as swal from '../../../_common/components/SweetAlert'
 
 function FormWithRadioGroup() {
   const history = useHistory();
@@ -34,9 +35,10 @@ function FormWithRadioGroup() {
       genderId: "0"
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

@@ -66,7 +66,7 @@ function DatatableListDemo(props) {
           setData(flatData);
           setTotalRecords(res.data.totalAmountRecords);
         } else {
-          alert(res.data.message);
+          swal.swalError('error',res.data.message);
         }
       })
       .catch((err) => {
@@ -191,7 +191,7 @@ function DatatableListDemo(props) {
   ];
 
   const handleButtonClick = (action,id) => {
-    alert(action + ' ' + id);
+    swal.swalInfo('clicked info',action + ' ' + id);
   };
 
   React.useEffect(() => {

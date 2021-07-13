@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 import FormikAutoComplete from "../../../_common/components/CustomFormik/FormikAutoComplete";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
 import * as demoAxios from "../../_redux/demoAxios";
+import * as swal from '../../../_common/components/SweetAlert'
 
 function FormWithAutoComplete() {
   const history = useHistory();
@@ -31,10 +32,10 @@ function FormWithAutoComplete() {
             ...state,
             product: productToSet,
           });
-        } else alert(res.data.message);
+        } else swal.swalError('error',res.data.message);
       })
       .catch((err) => {
-        alert(err.message);
+        swal.swalError('error',err.message);
       });
   }, []);
 
@@ -53,9 +54,11 @@ function FormWithAutoComplete() {
       product: state.product,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res)=>{
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
+
     },
   });
 

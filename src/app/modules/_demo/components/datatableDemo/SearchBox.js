@@ -18,7 +18,7 @@ function SearchBox(props) {
       productGroupName: "",
     },
     onSubmit: (values) => {
-      //   alert(JSON.stringify(values, null, 2));
+      //alert(JSON.stringify(values, null, 2));
       props.updateSearch(values);
       formik.setSubmitting(false);
     },

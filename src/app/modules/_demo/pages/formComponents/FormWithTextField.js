@@ -6,6 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikTextField from "../../../_common/components/CustomFormik/FormikTextField";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
+import * as swal  from '../../../_common/components/SweetAlert'
 
 function FormWithTextField() {
   const history = useHistory();
@@ -31,13 +32,11 @@ function FormWithTextField() {
     },
     onSubmit: (values) => {
       //submit .... 
-
-      alert(JSON.stringify(values, null, 2));
-
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res)=>{
       //reset submitting
       formik.setSubmitting(false);
-
       formik.resetForm()
+      });
     },
   });
 

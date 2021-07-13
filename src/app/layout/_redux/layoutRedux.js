@@ -8,7 +8,7 @@ export const actionTypes = {
 
 const initialAuthState = {
   drawerOpen: false,
-  darkMode: false
+  darkMode: false,
 };
 
 export const reducer = persistReducer(

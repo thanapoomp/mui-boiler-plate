@@ -6,7 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikDropdown from "../../../_common/components/CustomFormik/FormikDropdown";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
-
+import * as swal from '../../../_common/components/SweetAlert'
 function FormWithDropdown() {
   const history = useHistory();
   const [state] = React.useState({
@@ -28,7 +28,7 @@ function FormWithDropdown() {
       const errors = {};
 
       if (!values.titleId) {
-          errors.titleId='Required'
+        errors.titleId = "Required";
       }
 
       return errors;
@@ -38,9 +38,10 @@ function FormWithDropdown() {
       branchId: state.selectedBranchId,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo("info", JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm();
+      });
     },
   });
 

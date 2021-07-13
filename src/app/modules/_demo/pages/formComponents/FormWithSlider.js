@@ -5,8 +5,8 @@ import { useFormik } from "formik";
 import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikSlider from "../../../_common/components/CustomFormik/FormikSlider";
-import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
-
+import FormikRouterPrompt from "../../../_common/components/CustomFormik/FormikRouterPrompt";
+import * as swal from "../../../_common/components/SweetAlert";
 function FormWithSlider() {
   const history = useHistory();
 
@@ -16,18 +16,19 @@ function FormWithSlider() {
       const errors = {};
 
       if (values.score === 0) {
-        errors.score = 'required'
+        errors.score = "required";
       }
 
       return errors;
     },
     initialValues: {
-       score: -1,
+      score: -1,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo("info", JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm();
+      });
     },
   });
 

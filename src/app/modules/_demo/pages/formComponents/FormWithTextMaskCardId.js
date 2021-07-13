@@ -7,7 +7,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { validateThaiCitizenID } from '../../../_common/functions/commonValidators'
 import FormikTextMaskCardId from "../../../_common/components/CustomFormik/FormikTextMaskCardId";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
-
+import * as swal from '../../../_common/components/SweetAlert'
 
 function FormWithTextMaskCardId() {
   const history = useHistory();
@@ -32,9 +32,10 @@ function FormWithTextMaskCardId() {
     onSubmit: (values) => {
       let cardId = values.cardId.replaceAll("-", "").trim();
       values = {...values,cardId: cardId }
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res)=>{
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

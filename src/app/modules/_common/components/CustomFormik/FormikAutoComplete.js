@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import * as swal from '../SweetAlert'
 
 function FormikAutoComplete(props) {
   const [open, setOpen] = React.useState(false);
@@ -23,11 +24,11 @@ function FormikAutoComplete(props) {
           if (res.data.isSuccess) {
             setOptions(res.data.data);
           } else {
-            alert(res.data.message);
+            swal.swalError('error',res.data.message);
           }
         })
         .catch((err) => {
-          alert(err.message);
+          swal.swalError('error',err.message);
         });
     } else {
       setOptions([]);

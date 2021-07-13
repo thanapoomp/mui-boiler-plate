@@ -6,7 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikTextNumber from "../../../_common/components/CustomFormik/FormikTextNumber";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
-
+import * as swal from '../../../_common/components/SweetAlert'
 function FormWithTextNumber() {
   const history = useHistory();
   const [state] = React.useState({
@@ -28,9 +28,10 @@ function FormWithTextNumber() {
       price: state.price,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

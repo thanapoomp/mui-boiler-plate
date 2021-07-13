@@ -6,6 +6,7 @@ import { Grid, Button } from "@material-ui/core/";
 import { useHistory } from "react-router";
 import FormikCheckBox from "../../../_common/components/CustomFormik/FormikCheckBox";
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
+import * as swal from '../../../_common/components/SweetAlert'
 
 function FormWithCheckBox() {
   const history = useHistory();
@@ -32,9 +33,10 @@ function FormWithCheckBox() {
       isAccept: state.isAccept,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false);
-      formik.resetForm()
+      swal.swalInfo('info',JSON.stringify(values, null, 2)).then(() => {
+        formik.setSubmitting(false);
+        formik.resetForm()
+      });
     },
   });
 

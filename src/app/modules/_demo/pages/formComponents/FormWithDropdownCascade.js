@@ -7,6 +7,7 @@ import Axios from "axios";
 import { useHistory } from "react-router";
 import FormikDropdown from "../../../_common/components/CustomFormik/FormikDropdown";
 import * as CONST from "../../../../../Constant";
+import * as swal from '../../../_common/components/SweetAlert'
 import FormikRouterPrompt from '../../../_common/components/CustomFormik/FormikRouterPrompt'
 
 function FormWithDropdownCascade(props) {
@@ -34,9 +35,9 @@ function FormWithDropdownCascade(props) {
       productId: 1,
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      formik.setSubmitting(false)
-      formik.resetForm()
+      swal.swalInfo('title',JSON.stringify(values, null, 2)).then((res) => {
+        formik.setSubmitting(false)
+        formik.resetForm()});
     },
   });
 
@@ -47,11 +48,11 @@ function FormWithDropdownCascade(props) {
         if (res.data.isSuccess) {
           setProductGroup(res.data.data);
         } else {
-          alert(res.data.message);
+          swal.swalError('error',res.data.message);
         }
       })
       .catch((err) => {
-        alert(err.message);
+        swal.swalError('error',err.message);
       });
   };
 
@@ -62,11 +63,11 @@ function FormWithDropdownCascade(props) {
         if (res.data.isSuccess) {
           setProduct(res.data.data);
         } else {
-          alert(res.data.message);
+          swal.swalError('error',res.data.message);
         }
       })
       .catch((err) => {
-        alert(err.message);
+        swal.swalError('error',err.message);
       });
   };
 
