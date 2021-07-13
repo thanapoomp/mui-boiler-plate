@@ -50,7 +50,6 @@ function SSOConnector(props) {
 
   React.useEffect(() => {
     if (ssoMessage.eventType === "token-updated") {
-      console.log("token-updated", ssoMessage.eventMessage);
       if (ssoMessage.eventMessage !== "") {
         //set login
         handleLoggedIn(ssoMessage.eventMessage);
@@ -68,10 +67,10 @@ function SSOConnector(props) {
       <div>
         {!isSSOLoaded && (
           <React.Fragment>
-            <Container style={{height:500}}>
+            <Container style={{ height: 500 }}>
               <Grid
                 container
-                style={{height:500}}
+                style={{ height: 500 }}
                 spacing={3}
                 direction="column"
                 justifyContent="center"
