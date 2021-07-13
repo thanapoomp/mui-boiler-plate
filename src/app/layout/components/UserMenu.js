@@ -3,7 +3,8 @@ import {
   Typography,
   IconButton,
   MenuItem,
-  Menu
+  Menu,
+  Divider
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as layoutRedux from "../_redux/layoutRedux";
@@ -134,11 +135,10 @@ function UserMenu() {
             size="small"
             style={{ marginTop: 10 }}
             icon={<ExitToAppIcon style={{ fontSize: 20, marginLeft: 11 }} />}
-            // onDelete={handleDelete}
             color="default"
           />
           <Link
-            style={{ color: "#000000", marginLeft: 20, marginTop: 10 }}//#f7f5f5
+            style={{ color: "#000000", marginLeft: 20, marginTop: 10 }}
             component="button"
             variant="inherit"
             onClick={() => {
