@@ -59,7 +59,7 @@ function Login(props) {
               endIcon={<LockOpenIcon />}
               disableElevation
               onClick={() => {
-                let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=300,height=450,left=200,top=200`;
+                let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=300,height=500,left=200,top=200`;
                 window.open(CONST.SSO_URL, "login", params);
               }}
             >

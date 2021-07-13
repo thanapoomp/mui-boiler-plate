@@ -5,7 +5,6 @@ import PrivateRoute from "./PrivateRoute";
 import { ROLES } from "../../Constant";
 import OnlyAdmin from "../pages/OnlyAdmin";
 import Login from "../modules/_auth/pages/Login";
-import Logout from "../modules/_auth/pages/Logout";
 import ErrorUnAuthorized from "../pages/ErrorUnAuthorized";
 import Home from "../pages/Home";
 import AlertDemo from "../modules/_demo/pages/AlertDemo";
@@ -45,7 +44,6 @@ export default function BasePage(props) {
         {<Redirect exact from="/" to="/home" />}
 
         <ContentRoute exact title="login" path="/login" component={Login} />
-        <ContentRoute exact title="logout" path="/logout" component={Logout} />
         <ContentRoute exact title="home" path="/home" component={Home} />
         <Route exact path="/errorUnAuthorized" component={ErrorUnAuthorized} />
 
