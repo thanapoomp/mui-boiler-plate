@@ -11,9 +11,6 @@ import * as layoutRedux from "../_redux/layoutRedux";
 import * as CONST from '../../../Constant'
 import Chip from '@material-ui/core/Chip';
 import Link from '@material-ui/core/Link';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import HttpsIcon from '@material-ui/icons/Https';
 import UserProfile from "./UserProfile";
 import Icon from '@material-ui/core/Icon';
 
