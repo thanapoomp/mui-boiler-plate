@@ -3,7 +3,8 @@ import {
   Typography,
   IconButton,
   MenuItem,
-  Menu
+  Menu,
+  Divider
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import * as layoutRedux from "../_redux/layoutRedux";

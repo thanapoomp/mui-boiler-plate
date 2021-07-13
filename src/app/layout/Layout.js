@@ -16,6 +16,17 @@ function Layout(props) {
   const authReducer = useSelector(({ auth }) => auth);
   const layoutReducer = useSelector(({ layout }) => layout);
 
+  const theme = createTheme({
+    palette: {
+      type: layoutReducer.darkMode ? "dark" : "light",
+      
+    },
+    typography: {
+      fontFamily: ["Sarabun", "sans-serif"].join(","),
+    },
+  });
+
+
   const useStyles = makeStyles((theme) => ({
     root: {
       position: "fixed",
@@ -55,16 +66,7 @@ function Layout(props) {
     );
   }
 
-  const theme = createTheme({
-    palette: {
-      type: layoutReducer.darkMode ? "dark" : "light",
-      
-    },
-    typography: {
-      fontFamily: ["Sarabun", "sans-serif"].join(","),
-    },
-  });
-
+  
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>

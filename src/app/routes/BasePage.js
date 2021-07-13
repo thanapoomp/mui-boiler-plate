@@ -11,31 +11,32 @@ import Home from "../pages/Home";
 import AlertDemo from "../modules/_demo/pages/AlertDemo";
 import FormDemo from "../modules/_demo/pages/formComponents/FormDemo";
 import FormWithAutoComplete from "../modules/_demo/pages/formComponents/FormWithAutoComplete";
-import FormWithCheckBox from '../modules/_demo/pages/formComponents/FormWithCheckBox'
-import FormWithCheckboxGroup from '../modules/_demo/pages/formComponents/FormWithCheckboxGroup'
-import FormWithDatePicker from '../modules/_demo/pages/formComponents/FormWithDatePicker'
-import FormWithDateTimePicker from '../modules/_demo/pages/formComponents/FormWithDateTimePicker'
-import FormWithDropdown from '../modules/_demo/pages/formComponents/FormWithDropdown'
-import FormWithDropdownCascade from '../modules/_demo/pages/formComponents/FormWithDropdownCascade'
-import FormWithRadioGroup from '../modules/_demo/pages/formComponents/FormWithRadioGroup'
-import FormWithRating from '../modules/_demo/pages/formComponents/FormWithRating'
-import FormWithSlider from '../modules/_demo/pages/formComponents/FormWithSlider'
-import FormWithSwitch from '../modules/_demo/pages/formComponents/FormWithSwitch'
-import FormWithTextMaskCardId from '../modules/_demo/pages/formComponents/FormWithTextMaskCardId'
-import FormWithTextField from '../modules/_demo/pages/formComponents/FormWithTextField'
-import FormWithTextNumber from '../modules/_demo/pages/formComponents/FormWithTextNumber'
-import FormWithTimePicker from '../modules/_demo/pages/formComponents/FormWithTimePicker'
-import FormWithUploader from '../modules/_demo/pages/formComponents/FormWithUploader'
-import pdfGenerrate from '../modules/_demo/pages/PdfGenerateDemo'
-import QRGenerateDemo from '../modules/_demo/pages/QRGenerateDemo'
-import QRReaderDemo from '../modules/_demo/pages/QRReaderDemo'
-import BarcodeGenerateDemo from '../modules/_demo/pages/BarcodeGenerateDemo'
-import ChartDemo from '../modules/_demo/pages/ChartDemo'
-import ChartDrillDownDemo from '../modules/_demo/pages/ChartDrillDownDemo'
-import PrintComponent from '../modules/_demo/pages/PrintComponent'
-import DatatableListDemo from '../modules/_demo/pages/DatatableListDemo'
-import TabBasic from '../modules/_demo/pages/TabBasic'
-import ReduxDemo from '../modules/_demo/pages/ReduxDemo'
+import FormWithCheckBox from "../modules/_demo/pages/formComponents/FormWithCheckBox";
+import FormWithCheckboxGroup from "../modules/_demo/pages/formComponents/FormWithCheckboxGroup";
+import FormWithDatePicker from "../modules/_demo/pages/formComponents/FormWithDatePicker";
+import FormWithDateTimePicker from "../modules/_demo/pages/formComponents/FormWithDateTimePicker";
+import FormWithDropdown from "../modules/_demo/pages/formComponents/FormWithDropdown";
+import FormWithDropdownCascade from "../modules/_demo/pages/formComponents/FormWithDropdownCascade";
+import FormWithRadioGroup from "../modules/_demo/pages/formComponents/FormWithRadioGroup";
+import FormWithRating from "../modules/_demo/pages/formComponents/FormWithRating";
+import FormWithSlider from "../modules/_demo/pages/formComponents/FormWithSlider";
+import FormWithSwitch from "../modules/_demo/pages/formComponents/FormWithSwitch";
+import FormWithTextMaskCardId from "../modules/_demo/pages/formComponents/FormWithTextMaskCardId";
+import FormWithTextField from "../modules/_demo/pages/formComponents/FormWithTextField";
+import FormWithTextNumber from "../modules/_demo/pages/formComponents/FormWithTextNumber";
+import FormWithTimePicker from "../modules/_demo/pages/formComponents/FormWithTimePicker";
+import FormWithUploader from "../modules/_demo/pages/formComponents/FormWithUploader";
+import pdfGenerrate from "../modules/_demo/pages/PdfGenerateDemo";
+import QRGenerateDemo from "../modules/_demo/pages/QRGenerateDemo";
+import QRReaderDemo from "../modules/_demo/pages/QRReaderDemo";
+import BarcodeGenerateDemo from "../modules/_demo/pages/BarcodeGenerateDemo";
+import ChartDemo from "../modules/_demo/pages/ChartDemo";
+import ChartDrillDownDemo from "../modules/_demo/pages/ChartDrillDownDemo";
+import PrintComponent from "../modules/_demo/pages/PrintComponent";
+import DatatableListDemo from "../modules/_demo/pages/DatatableListDemo";
+import TabBasic from "../modules/_demo/pages/TabBasic";
+import ReduxDemo from "../modules/_demo/pages/ReduxDemo";
+import Product from "../modules/_crudDemo/pages/Product";
 
 export default function BasePage(props) {
   return (
@@ -46,9 +47,9 @@ export default function BasePage(props) {
         <ContentRoute exact title="login" path="/login" component={Login} />
         <ContentRoute exact title="logout" path="/logout" component={Logout} />
         <ContentRoute exact title="home" path="/home" component={Home} />
+        <Route exact path="/errorUnAuthorized" component={ErrorUnAuthorized} />
 
         {/* Begin Demo */}
-        <React.Fragment>
         <PrivateRoute
           exact
           title="only admin"
@@ -164,7 +165,7 @@ export default function BasePage(props) {
           component={FormWithUploader}
           title="FormWithUploader"
         />
-                <ContentRoute
+        <ContentRoute
           exact
           path="/demo/reduxDemo"
           component={ReduxDemo}
@@ -224,11 +225,15 @@ export default function BasePage(props) {
           component={TabBasic}
           title="Tab Basic"
         />
-        </React.Fragment>
+        <ContentRoute
+          exact
+          path="/demo/crud-product"
+          component={Product}
+          title="Product CRUD Demo"
+        />
         {/* End Demo part สามารถ comment ได้ */}
 
         {/* nothing match - redirect to error */}
-        <Route path="/errorUnAuthorized" component={ErrorUnAuthorized} />
         <Redirect to="/error404" />
       </Switch>
     </React.Fragment>
