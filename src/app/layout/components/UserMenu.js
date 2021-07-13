@@ -14,9 +14,8 @@ import Link from '@material-ui/core/Link';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import HttpsIcon from '@material-ui/icons/Https';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import NightsStayIcon from '@material-ui/icons/NightsStay';
 import UserProfile from "./UserProfile";
+import Icon from '@material-ui/core/Icon';
 
 function UserMenu() {
   const authReducer = useSelector(({ auth }) => auth)
@@ -24,7 +23,6 @@ function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const layoutReducer = useSelector(({ layout }) => layout)
-  const [mode, setMode] = React.useState(false);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,11 +34,9 @@ function UserMenu() {
 
   const swithMode = () => {
     //todo switch mode
-    if (mode) {
-      setMode(false);
+    if (layoutReducer.darkMode) {
       dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
     } else {
-      setMode(true);
       dispatch(layoutRedux.actions.updateDarkMode(!layoutReducer.darkMode))
     }
   }
@@ -70,7 +66,7 @@ function UserMenu() {
       <IconButton onClick={() => {
         swithMode();
       }}>
-        {mode === true ? <NightsStayIcon style={{ fontSize: 20 }} /> : <WbSunnyIcon style={{ fontSize: 20, color: "#f27e2c" }} />}
+        {layoutReducer.darkMode ? <Icon fontSize="small" style={{ color: "#f27e2c" }}>light_mode</Icon> : <Icon fontSize="small">dark_mode</Icon>}
       </IconButton>
       <IconButton
         aria-label="account of current user"
@@ -113,7 +109,7 @@ function UserMenu() {
         <MenuItem onClick={changePasswordClick}>
           <Chip
             size="small"
-            icon={<HttpsIcon style={{ fontSize: 20, marginLeft: 10 }} />}
+            icon={<Icon style={{ fontSize: 20, marginLeft: 10 }} >lock_open</Icon>}
           />
           <Link
             style={{ color: "#000000", marginLeft: 20, marginBottom: 10 }}
@@ -124,7 +120,7 @@ function UserMenu() {
             }}
           >
             Change Password
-            <ChevronRightIcon style={{ marginLeft: 200 }}></ChevronRightIcon>
+            <Icon style={{ marginLeft: 200 }}>chevron_right</Icon>
           </Link>
         </MenuItem>
         {/* end Change Password */}
@@ -134,7 +130,7 @@ function UserMenu() {
           <Chip
             size="small"
             style={{ marginTop: 10 }}
-            icon={<ExitToAppIcon style={{ fontSize: 20, marginLeft: 11 }} />}
+            icon={<Icon style={{ fontSize: 20, marginLeft: 11 }} >logout</Icon>}
             color="default"
           />
           <Link
