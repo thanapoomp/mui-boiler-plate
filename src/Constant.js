@@ -27,7 +27,7 @@ export const SSO_URL_Changepassword =
   !process.env.NODE_ENV || process.env.NODE_ENV === "development"
     // ? "https://auth.thanapoom.cc/#/logout" //dev
     ? "http://localhost:3000/#/changepassword" //dev
-    : "http://localhost:3000/#/changepassword"; // Production
+    : "https://auth.thanapoom.cc/#/changepassword"; // Production
 
 export const ROLES = {
   user: "User",

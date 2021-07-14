@@ -2,7 +2,7 @@
   "name": "sso-auth",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://auth.thanapoom.cc",
+  "homepage": "https://site1.thanapoom.cc",
   "dependencies": {
     "@date-io/dayjs": "^1.3.13",
     "@manaflair/redux-batch": "^1.0.0",
