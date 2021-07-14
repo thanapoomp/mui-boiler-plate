@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import * as CONST from "../../../../Constant";
@@ -13,7 +13,7 @@ function SSOConnector(props) {
   const dispatch = useDispatch();
   const [ssoMessage, setSSOMessage] = React.useState({});
   const [isSSOLoaded, setIsSSOLoaded] = React.useState(false);
-  const authReducer = useSelector(({auth}) => auth)
+  const authReducer = useSelector(({ auth }) => auth);
 
   const handleLoggedIn = (token) => {
     let loginDetail = {};
@@ -51,14 +51,18 @@ function SSOConnector(props) {
 
   React.useEffect(() => {
     if (ssoMessage.eventType === "token-updated") {
-      console.log("token-updated:",ssoMessage.eventMessage);
-      if (ssoMessage.eventMessage !== "" && ssoMessage.eventMessage !== 'null') {
+      if (
+        ssoMessage.eventMessage !== "" &&
+        ssoMessage.eventMessage !== "null"
+      ) {
         //set login
         if (ssoMessage.eventMessage !== authReducer.authToken) {
+          console.log("token-updated:", ssoMessage.eventMessage);
           handleLoggedIn(ssoMessage.eventMessage);
         }
       } else {
         //set logout
+        console.log("token-updated:", 'logged-out');
         handleLoggedOut();
       }
       setIsSSOLoaded(true);
@@ -80,7 +84,9 @@ function SSOConnector(props) {
                 justifyContent="center"
                 alignItems="center"
               >
-                <Grid item><CircularProgress /></Grid>
+                <Grid item>
+                  <CircularProgress />
+                </Grid>
                 <Grid item>
                   <Typography>Connecting to SSO Auth Service</Typography>
                 </Grid>
