@@ -48,14 +48,16 @@ function UserMenu() {
   };
 
   const logoutClick = () => {
-    const toggle = document.getElementById("kt_quick_user_toggle");
-    if (toggle) {
-      toggle.click();
-    }
-    let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-        width=300,height=500,left=200,top=200`;
-    window.open(CONST.SSO_URL_LOGOUT, 'logged-out', params);
-    setAnchorEl(null);
+    // const toggle = document.getElementById("kt_quick_user_toggle");
+    // if (toggle) {
+    //   toggle.click();
+    // }
+    // let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+    //     width=300,height=500,left=200,top=200`;
+    // window.open(CONST.SSO_URL_LOGOUT, 'logged-out', params);
+    // setAnchorEl(null);
+    handleClose()
+    dispatch(layoutRedux.actions.showPopupLogout())
   };
 
   return (

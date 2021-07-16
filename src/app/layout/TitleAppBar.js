@@ -1,16 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { useDispatch } from "react-redux";
 import * as layoutRedux from "./_redux/layoutRedux";
-import * as CONST from '../../Constant'
-import UserMenu from './components/UserMenu'
+import * as CONST from "../../Constant";
+import UserMenu from "./components/UserMenu";
+import PopupLogout from "./components/PopupLogout";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +27,7 @@ export default function TitleAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" style={{marginBottom:10}} color="default">
+      <AppBar position="fixed" style={{ marginBottom: 10 }} color="default">
         <Toolbar variant="dense">
           <IconButton
             edge="start"
@@ -48,7 +44,10 @@ export default function TitleAppBar() {
             {CONST.APP_INFO.name}
           </Typography>
           {auth && (
-            <UserMenu/>
+            <React.Fragment>
+              <UserMenu />
+              <PopupLogout></PopupLogout>
+            </React.Fragment>
           )}
         </Toolbar>
       </AppBar>

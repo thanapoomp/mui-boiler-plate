@@ -1,19 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Typography } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { Grid, Paper } from "@material-ui/core";
 import * as CONST from "../../../../Constant";
 import * as authRedux from "../_redux/authRedux";
 import * as authCRUD from "../_redux/authCrud";
-import { Container } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
 
 function SSOConnector(props) {
   const dispatch = useDispatch();
   const [ssoMessage, setSSOMessage] = React.useState({});
-  const [isSSOLoaded, setIsSSOLoaded] = React.useState(false);
   const authReducer = useSelector(({ auth }) => auth);
+
+  const { isAuthorized } = useSelector(
+    ({ auth }) => ({
+      isAuthorized: auth.user != null,
+    }),
+    shallowEqual
+  );
 
   const handleLoggedIn = (token) => {
     let loginDetail = {};
@@ -53,7 +56,8 @@ function SSOConnector(props) {
     if (ssoMessage.eventType === "token-updated") {
       if (
         ssoMessage.eventMessage !== "" &&
-        ssoMessage.eventMessage !== "null"
+        ssoMessage.eventMessage !== "null" &&
+        ssoMessage.eventMessage !== null
       ) {
         //set login
         if (ssoMessage.eventMessage !== authReducer.authToken) {
@@ -62,46 +66,51 @@ function SSOConnector(props) {
         }
       } else {
         //set logout
-        console.log("token-updated:", 'logged-out');
+        console.log("token-updated:", "logged-out");
         handleLoggedOut();
       }
-      setIsSSOLoaded(true);
+      console.log("loaded");
     }
   }, [ssoMessage]);
 
   return (
     <React.Fragment>
-      <div>{isSSOLoaded && props.children}</div>
-      <div>
-        {!isSSOLoaded && (
-          <React.Fragment>
-            <Container style={{ height: 500 }}>
-              <Grid
-                container
-                style={{ height: 500 }}
-                spacing={3}
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <CircularProgress />
-                </Grid>
-                <Grid item>
-                  <Typography>Connecting to SSO Auth Service</Typography>
-                </Grid>
-              </Grid>
-            </Container>
-          </React.Fragment>
-        )}
-      </div>
-      <iframe
-        width="0"
-        height="0"
-        frameBorder="0"
-        title="sso"
-        src={CONST.SSO_URL}
-      />
+      {isAuthorized && props.children}
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid
+          item
+          xs={12}
+          lg={4}
+          container
+          spacing={2}
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Paper
+            elevation={3}
+            style={{
+              width: isAuthorized ? 400 : 400,
+              height: isAuthorized ? 500 : 500,
+              marginTop: 30,
+            }}
+          >
+            <iframe
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              title="sso"
+              src={CONST.SSO_URL}
+            />
+          </Paper>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }

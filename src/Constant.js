@@ -1,10 +1,17 @@
 export const APP_INFO = {
   name: "New Standard",
-  version: "0.1",
+  version: "0.2.0",
   since: "2020",
   description: "Siam smile",
   contactUrl: "https://www.siamsmile.co.th",
 };
+
+export const CHECKVERSION_EVERY_MINUTE = 10
+
+export const VERSIONCHECK_URL =
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+    ? "https://api.thanapoom.cc/api/ClientVersion/GetLastClientVersion" //dev
+    : "https://api.thanapoom.cc/api/ClientVersion/GetLastClientVersion"; // Production
 
 export const API_URL =
   !process.env.NODE_ENV || process.env.NODE_ENV === "development"
