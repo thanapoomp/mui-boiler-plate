@@ -4,8 +4,8 @@ import storage from "redux-persist/lib/storage";
 export const actionTypes = {
   UPDATE_DRAWER_OPEN: "[UPDATE_DRAWER_OPEN] Action",
   UPDATE_DARK_MODE: '[UPDATE_DARK_MODE] Action',
-  SHOW_POPUP_LOGOUT: '[SHOP_POPUP_LOGOUT] Action',
-  HIDE_POPUP_LOGOUT: '[HIDE_POPUP_LOGOUT] Action',
+  SHOW_POPUP_LOGINOUT: '[SHOW_POPUP_LOGINOUT] Action',
+  HIDE_POPUP_LOGINOUT: '[HIDE_POPUP_LOGINOUT] Action',
   SHOW_POPUP_CHANGEPASSWORD: '[SHOW_POPUP_CHANGEPASSWORD] Action',
   HIDE_POPUP_CHANGEPASSWORD: '[HIDE_POPUP_CHANGEPASSWORD] Action'
 };
@@ -13,7 +13,7 @@ export const actionTypes = {
 const initialAuthState = {
   drawerOpen: false,
   darkMode: false,
-  popupLogout: false,
+  popupLogInOut: false,
   popupChangePassword: false
 };
 
@@ -35,17 +35,17 @@ export const reducer = persistReducer(
         };
       }
 
-      case actionTypes.SHOW_POPUP_LOGOUT: {
+      case actionTypes.SHOW_POPUP_LOGINOUT: {
         return {
           ...state,
-          popupLogout:true,
+          popupLogInOut:true,
         };
       }
 
-      case actionTypes.HIDE_POPUP_LOGOUT: {
+      case actionTypes.HIDE_POPUP_LOGINOUT: {
         return {
           ...state,
-          popupLogout:false,
+          popupLogInOut:false,
         };
       }
 
@@ -73,8 +73,8 @@ export const reducer = persistReducer(
 export const actions = {
     updateDrawerOpen: (payload) => ({ type: actionTypes.UPDATE_DRAWER_OPEN,payload }),
     updateDarkMode: (payload) => ({ type: actionTypes.UPDATE_DARK_MODE,payload }),
-    showPopupLogout: (payload) => ({ type: actionTypes.SHOW_POPUP_LOGOUT }),
-    hidePopupLogout: (payload) => ({ type: actionTypes.HIDE_POPUP_LOGOUT }),
+    showPopupLogInOut: (payload) => ({ type: actionTypes.SHOW_POPUP_LOGINOUT }),
+    hidePopupLogInOut: (payload) => ({ type: actionTypes.HIDE_POPUP_LOGINOUT }),
     showPopupChangePassword: (payload) => ({ type: actionTypes.SHOW_POPUP_CHANGEPASSWORD }),
     hidePopupChangePassword: (payload) => ({ type: actionTypes.HIDE_POPUP_CHANGEPASSWORD }),
 };

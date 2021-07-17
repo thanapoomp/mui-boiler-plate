@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { Grid, Paper } from "@material-ui/core";
+import PopupLogInOut from "../../../layout/components/PopupLogInOut";
 import * as CONST from "../../../../Constant";
 import * as authRedux from "../_redux/authRedux";
 import * as authCRUD from "../_redux/authCrud";
+import * as layoutRedux from '../../../layout/_redux/layoutRedux'
 
 function SSOConnector(props) {
   const dispatch = useDispatch();
   const [ssoMessage, setSSOMessage] = React.useState({});
+  const [loaded, setLoaded] = React.useState(false)
   const authReducer = useSelector(({ auth }) => auth);
 
   const { isAuthorized } = useSelector(
@@ -18,28 +20,32 @@ function SSOConnector(props) {
     shallowEqual
   );
 
-  const handleLoggedIn = (token) => {
-    let loginDetail = {};
+  const handleLoggedIn = (token) =>
+    new Promise((resolve) => {
+      let loginDetail = {};
 
-    //get token
-    loginDetail.authToken = token;
+      //get token
+      loginDetail.authToken = token;
 
-    //get user
-    loginDetail.user = authCRUD.getUserByToken(token);
+      //get user
+      loginDetail.user = authCRUD.getUserByToken(token);
 
-    // get exp
-    let exp = authCRUD.getExp(token);
-    loginDetail.exp = exp;
+      // get exp
+      let exp = authCRUD.getExp(token);
+      loginDetail.exp = exp;
 
-    //get roles
-    loginDetail.roles = authCRUD.getRoles(token);
+      //get roles
+      loginDetail.roles = authCRUD.getRoles(token);
 
-    dispatch(authRedux.actions.renewToken(loginDetail));
-  };
+      dispatch(authRedux.actions.renewToken(loginDetail));
+      resolve();
+    });
 
-  const handleLoggedOut = () => {
-    dispatch(authRedux.actions.logout());
-  };
+  const handleLoggedOut = () =>
+    new Promise((resolve) => {
+      dispatch(authRedux.actions.logout());
+      resolve();
+    });
 
   React.useEffect(() => {
     const handler = (event) => {
@@ -62,55 +68,27 @@ function SSOConnector(props) {
         //set login
         if (ssoMessage.eventMessage !== authReducer.authToken) {
           console.log("token-updated:", ssoMessage.eventMessage);
-          handleLoggedIn(ssoMessage.eventMessage);
+          handleLoggedIn(ssoMessage.eventMessage).then(() => {
+            dispatch(layoutRedux.actions.hidePopupLogInOut())
+          });
         }
       } else {
         //set logout
         console.log("token-updated:", "logged-out");
-        handleLoggedOut();
+        handleLoggedOut().then(() => {
+          dispatch(layoutRedux.actions.showPopupLogInOut())
+        });
       }
-      console.log("loaded");
+      setLoaded(true)
     }
   }, [ssoMessage]);
 
   return (
     <React.Fragment>
-      {isAuthorized && props.children}
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid
-          item
-          xs={12}
-          lg={4}
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Paper
-            elevation={3}
-            style={{
-              width: isAuthorized ? 400 : 400,
-              height: isAuthorized ? 500 : 500,
-              marginTop: 30,
-            }}
-          >
-            <iframe
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              title="sso"
-              src={CONST.SSO_URL}
-            />
-          </Paper>
-        </Grid>
-      </Grid>
+      {loaded && (
+        <React.Fragment>{isAuthorized && props.children}</React.Fragment>
+      )}
+      <PopupLogInOut></PopupLogInOut>
     </React.Fragment>
   );
 }

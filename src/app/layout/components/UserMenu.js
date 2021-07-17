@@ -57,7 +57,7 @@ function UserMenu() {
     // window.open(CONST.SSO_URL_LOGOUT, 'logged-out', params);
     // setAnchorEl(null);
     handleClose()
-    dispatch(layoutRedux.actions.showPopupLogout())
+    dispatch(layoutRedux.actions.showPopupLogInOut())
   };
 
   return (

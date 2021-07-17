@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import * as layoutRedux from "./_redux/layoutRedux";
 import * as CONST from "../../Constant";
 import UserMenu from "./components/UserMenu";
-import PopupLogout from "./components/PopupLogout";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +45,6 @@ export default function TitleAppBar() {
           {auth && (
             <React.Fragment>
               <UserMenu />
-              <PopupLogout></PopupLogout>
             </React.Fragment>
           )}
         </Toolbar>
