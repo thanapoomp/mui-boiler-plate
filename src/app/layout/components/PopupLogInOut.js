@@ -24,39 +24,24 @@ export default function PopupLogInOut() {
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "none",
+          margin: 0,
+          padding: 0,
+          display: "block",
+        }}
       >
-        <Grid
-          item
-          xs={12}
-          lg={12}
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Paper
-            elevation={3}
-            style={{
-              overflow: "hidden",
-            }}
-          >
-            <iframe
-              width="350"
-              height="450"
-              frameBorder="0"
-              title="sso"
-              src={CONST.SSO_URL}
-            />
-          </Paper>
-        </Grid>
-      </Grid>
+        <iframe
+          width="350"
+          height="470"
+          frameBorder="0"
+          title="sso"
+          src={CONST.SSO_URL}
+        />
+      </div>
     </Dialog>
   );
 }

@@ -2,6 +2,7 @@
 import React from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import PopupLogInOut from "../../../layout/components/PopupLogInOut";
+import { Typography,CircularProgress,Box,Container } from "@material-ui/core";
 import * as CONST from "../../../../Constant";
 import * as authRedux from "../_redux/authRedux";
 import * as authCRUD from "../_redux/authCrud";
@@ -22,6 +23,7 @@ function SSOConnector(props) {
 
   const handleLoggedIn = (token) =>
     new Promise((resolve) => {
+      debugger
       let loginDetail = {};
 
       //get token
