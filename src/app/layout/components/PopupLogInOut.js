@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, Grid, Paper } from "@material-ui/core/";
+import { Dialog } from "@material-ui/core/";
 import { useSelector, useDispatch } from "react-redux";
 import * as layoutRedux from "../_redux/layoutRedux";
 import * as CONST from "../../../Constant";

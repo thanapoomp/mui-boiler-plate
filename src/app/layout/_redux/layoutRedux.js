@@ -13,7 +13,7 @@ export const actionTypes = {
 const initialAuthState = {
   drawerOpen: false,
   darkMode: false,
-  popupLogInOut: false,
+  popupLogInOut: true,
   popupChangePassword: false
 };
 
